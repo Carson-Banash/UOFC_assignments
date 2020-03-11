@@ -25,6 +25,13 @@ def combineAll (parameter_list):
     pass
 
 def main ():
-    print("your choice is", handleInput())
+    choice = handleInput()
+
+    if choice == 1:
+        pass
+    elif choice == 2:
+        pass
+    elif choice == 3:
+        pass
 
 main()
