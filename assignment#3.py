@@ -30,11 +30,11 @@ def blendPixel (image_1, image_2, x, y):
 
 def combineAll (image_1, image_2):
     allBlended = createImage(getWidth(image_1), getHeight(image_1))
-    for y in range(0, getHeight(image_1)):
-            for x in range(0, getWidth(image_1)):
+    for y in range(getHeight(image_1)):
+            for x in range(getWidth(image_1)):
                 r,g,b = blendPixel(image_1, image_2, x, y)
-                print(r,g,b)
-                putPixel(allBlended, x, y, r, g, b)
+                #print(r,g,b)
+                putPixel(allBlended, x, y, r/1.5, g/1.5, b/1.5)
     return(allBlended)
 
 def combineParts():
@@ -43,14 +43,14 @@ def combineParts():
 def main ():
     image_1 = loadImage("/Users/carson/Desktop/DATA 211/Assignments/Mars.gif")
     image_2 = loadImage("/Users/carson/Desktop/DATA 211/Assignments/Water.gif") 
-    
+    resize(getWidth(image_1), getHeight(image_1))
 
     choice = handleInput()
 
     if choice == 1:
         
         drawImage(combineAll(image_1, image_2), 0, 0)
-
+        print("Your image is complete.")
     elif choice == 2:
         pass
     elif choice == 3:
