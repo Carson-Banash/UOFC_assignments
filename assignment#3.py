@@ -37,8 +37,11 @@ def combineAll (image_1, image_2):
                 putPixel(allBlended, x, y, r/1.5, g/1.5, b/1.5)
     return(allBlended)
 
-def combineParts():
-    pass
+def combineParts(image_1, image_2, choice):
+    if choice == 2:
+        pass
+    elif choice ==3:
+        pass
 
 def main ():
     image_1 = loadImage("/Users/carson/Desktop/DATA 211/Assignments/Mars.gif")
@@ -51,9 +54,9 @@ def main ():
         
         drawImage(combineAll(image_1, image_2), 0, 0)
         print("Your image is complete.")
-    elif choice == 2:
-        pass
-    elif choice == 3:
-        pass
+    else:
+
+        combineParts(image_1, image_2, choice)
+    
 
 main()
