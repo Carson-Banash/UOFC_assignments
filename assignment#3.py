@@ -39,7 +39,7 @@ def combineAll (image_1, image_2):
 
 def combineParts(image_1, image_2, choice):
     choice = choice 
-    elif choice == 2:
+    if choice == 2:
         partlyBlended = createImage(getWidth(image_1), getHeight(image_1))
         for y in range(getHeight(image_1)):
             for x in range(getWidth(image_1)):
@@ -53,7 +53,7 @@ def combineParts(image_1, image_2, choice):
                 elif x>((getWidth(image_1)/3)*2):
                     putPixel(partlyBlended, x, y, r_img2, g_img2, b_img2)
 
-    if choice == 3:
+    elif choice == 3:
         partlyBlended = createImage(getWidth(image_1), getHeight(image_1))
         for y in range(getHeight(image_1)):
             for x in range(getWidth(image_1)):
