@@ -33,16 +33,27 @@ def combineAll (image_1, image_2):
     for y in range(getHeight(image_1)):
             for x in range(getWidth(image_1)):
                 r,g,b = blendPixel(image_1, image_2, x, y)
-                #print(r,g,b)
                 putPixel(allBlended, x, y, r/1.5, g/1.5, b/1.5)
+
     return(allBlended)
 
 def combineParts(image_1, image_2, choice):
     if choice == 2:
-        pass
+        verticalyBlended = createImage(getWidth(image_1), getHeight(image_1))
+        for y in range(getHeight(image_1)):
+            for x in range(getWidth(image_1)):
+                r_img1, g_img1, b_img1 = getPixel(image_1, x, y)
+                r_img2, g_img2, b_img2 = getPixel(image_2, x, y)
+                while y <= (getHeight(image_1)/3):
+                    putPixel(verticalyBlended, x, y, r_img1, g_img1, b_img1)
+                while (getHeight(image_1)/3)<y<((getHeight(image_1)/3)*2):
+                    r,g,b = blendPixel(image_1, image_2, x, y)
+                    putPixel(verticalyBlended, x, y, r, g, b)
+                while ((getHeight(image_1)/3)*2)<y<(getHeight(image_1)):
+                    putPixel(verticalyBlended, x, y, r_img2, g_img2, b_img2)
     elif choice ==3:
         pass
-
+    return verticalyBlended
 def main ():
     image_1 = loadImage("/Users/carson/Desktop/DATA 211/Assignments/Mars.gif")
     image_2 = loadImage("/Users/carson/Desktop/DATA 211/Assignments/Water.gif") 
@@ -54,9 +65,14 @@ def main ():
         
         drawImage(combineAll(image_1, image_2), 0, 0)
         print("Your image is complete.")
-    else:
+
+    elif choice == 2:
+
+        vertical, horizontal = combineParts(image_1, image_2, choice)
+        drawImage(vertical, 0, 0)
 
         combineParts(image_1, image_2, choice)
+        print("Your image is complete.")
     
 
 main()
