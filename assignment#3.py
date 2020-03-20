@@ -25,7 +25,7 @@ def handleInput ():
         print("2: Vertically combine two images.")
         print("3: Horizontally combine two images.")
         choice = int(input("What is your choice? ")) #gets the users imput again
-        
+
     #returns the users choice and ends the function.
     return choice
 
@@ -36,13 +36,15 @@ def handleInput ():
 #x and y: these give the x and y location of the two pixels to be blended
 #the function then returns the averaged colour values for red green and blue
 def blendPixel (image_1, image_2, x, y):
+    #gets the red green and blue values for each image at the given x and y corordinate
     r_img1, g_img1, b_img1 = getPixel(image_1, x, y)
     r_img2, g_img2, b_img2 = getPixel(image_2, x, y)
 
+    #calculates the average red green and blue values for the two images with the information obtained from the images
     r_avg = r_img1 + r_img2 / 2
     g_avg = g_img1 + g_img2 / 2
     b_avg = b_img1 + b_img2 / 2
-    
+    #returns the average for the red green and blue values
     return r_avg, g_avg, b_avg
 
 #this function is responsible for creating a new image that is the entire combination of images one and two,
@@ -52,15 +54,19 @@ def blendPixel (image_1, image_2, x, y):
 #image_2: this gives the function the entirety of the second image
 #the function then returns the image that is the average of both, or in other words the blended image
 def combineAll (image_1, image_2):
-
+    #creates a new image which will be filled with pixels having the values of rgb obtained from the blendPixel function
     allBlended = createImage(getWidth(image_1), getHeight(image_1))
 
+    #these two for loops with the ranges of the height and the width of image 1 (or it could be image 2 since they are both the same size)
+    #are responsible for going through the images one pixel at a time
     for y in range(getHeight(image_1)):
             for x in range(getWidth(image_1)):
-
+                #gets the red green and blue values from the blendPil
                 r,g,b = blendPixel(image_1, image_2, x, y)
+                #puts a new pixel in the new image created with the average rgb values obtained from the blendPixel function
+                #and at the given x and y position
                 putPixel(allBlended, x, y, r/1.5, g/1.5, b/1.5)
-
+    #returns the image that is the combination of both of the images
     return allBlended
 
 #this function is responsible for combining the two whole images either vertically or horizontally, which is determined by user input
@@ -70,45 +76,64 @@ def combineAll (image_1, image_2):
 #choice: this is the users input, which determines whether the image will be combined vertically or horizontally
 #the function returns a new image that is combined in the middle either vertically or horizontally
 def combineParts(image_1, image_2, choice):
-
-    choice = choice 
-
+    #this if statemnt is to dicide if the blend should be vertial or horizontal, in this case its vertical
     if choice == 2:
+        #creates a new image that will be filled with the new pixels, which depend on the users choice
         partlyBlended = createImage(getWidth(image_1), getHeight(image_1))
+        #these two for loops with the ranges of the height and the width of image 1 (or it could be image 2 since they are both the same size)
+        #are responsible for going through the images one pixel at a time
         for y in range(getHeight(image_1)):
             for x in range(getWidth(image_1)):
-
+                #gets the red green and blue values from each image
                 r_img1, g_img1, b_img1 = getPixel(image_1, x, y)
                 r_img2, g_img2, b_img2 = getPixel(image_2, x, y)
 
+                #this if statment is for putting the first image on the left side of the blended portion
                 if x <= (getWidth(image_1)/3):
                     putPixel(partlyBlended, x, y, r_img1, g_img1, b_img1)
 
+                #this if statment is for putting the blended pixels in the middle of the new image
                 elif (getWidth(image_1)/3)<x<((getWidth(image_1)/3)*2):
+                    #calls the blendPixel function with the correct parameters, this is so that the middle section is blened
                     r,g,b = blendPixel(image_1, image_2, x, y)
+                    #puts the blended pixels in the middle third of the image
                     putPixel(partlyBlended, x, y, r/1.5, g/1.5, b/1.5)
 
+                #this if stament is for putting the second image on the right side of the blended portion
                 elif x>((getWidth(image_1)/3)*2):
+                    #puts the pixels from the second image in the right third of the image
                     putPixel(partlyBlended, x, y, r_img2, g_img2, b_img2)
 
+    #this if statemnt is to dicide if the blend should be vertial or horizontal, in this case its horizontal
     elif choice == 3:
+        #creates a new image that will be filled with the new pixels, which depend on the users choice
         partlyBlended = createImage(getWidth(image_1), getHeight(image_1))
+        #these two for loops with the ranges of the height and the width of image 1 (or it could be image 2 since they are both the same size)
+        #are responsible for going through the images one pixel at a time
         for y in range(getHeight(image_1)):
             for x in range(getWidth(image_1)):
-
+                #gets the red green and blue values from each image
                 r_img1, g_img1, b_img1 = getPixel(image_1, x, y)
                 r_img2, g_img2, b_img2 = getPixel(image_2, x, y)
 
+                #this if statment is for putting the first image in the top of the blended area
                 if y <= (getHeight(image_1)/3):
+                    #puts the pixels from the fist image on the top third of the image
                     putPixel(partlyBlended, x, y, r_img1, g_img1, b_img1)
 
+                #this if statment is for putting the blended pixels in the middle of the new image
                 elif (getHeight(image_1)/3)<y<((getHeight(image_1)/3)*2):
+                    #calls the blend pixel fuction with the correct parameters, this is done so that the middle section is blended
                     r,g,b = blendPixel(image_1, image_2, x, y)
+                    #puts the blended pixel in the middle third of the image
                     putPixel(partlyBlended, x, y, r/1.5, g/1.5, b/1.5)
 
+                #this if statment is for putting the second image in the bottom of the blended area
                 elif y>((getHeight(image_1)/3)*2):
+                    #puts the pixels from the second image on the botttom third of the image
                     putPixel(partlyBlended, x, y, r_img2, g_img2, b_img2)
 
+    #returns the image, that being the partial blend of image one and image two
     return partlyBlended
 
 #this function is responsible for the high-level processing, like the processing of the choice,
