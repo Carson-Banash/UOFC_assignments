@@ -9,20 +9,24 @@ from SimpleGraphics import *
 #there is only one return, that being the integer for the users choice
 def handleInput ():
 
+    #prints the choices for the ousers choice
     print("Choose a transform type from the following:")
     print("1: Combine two whole images.")
     print("2: Vertically combine two images.")
     print("3: Horizontally combine two images.")
-
+    #gets the users input as an integer
     choice = int(input("What is your choice? "))
 
+    #this loop is respinsible for asking the question again if the users input(choice) isnt equal to either 1,2, or 3
     while choice != 1 and choice != 2 and choice != 3 :
+        #prints the choices again 
         print("please enter either 1,2, or 3. again your choices are:")
         print("1: Combine two whole images.")
         print("2: Vertically combine two images.")
         print("3: Horizontally combine two images.")
-        choice = int(input("What is your choice? "))
-
+        choice = int(input("What is your choice? ")) #gets the users imput again
+        
+    #returns the users choice and ends the function.
     return choice
 
 #this function is responsible for combining the pixels from two images into one pixel 
