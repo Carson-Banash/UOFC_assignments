@@ -4,7 +4,7 @@
 #imports all of the simple graphics library
 from SimpleGraphics import *
 
-#has holds all of the logic for the users choice
+#handleInput holds all of the logic for the users choice, including asking the for a choice as-well as re-asking if the input doesn't fit
 #there are no parameters
 #there is only one return, that being the integer for the users choice
 def handleInput ():
@@ -36,7 +36,7 @@ def handleInput ():
 #x and y: these give the x and y location of the two pixels to be blended
 #the function then returns the averaged colour values for red green and blue
 def blendPixel (image_1, image_2, x, y):
-    #gets the red green and blue values for each image at the given x and y coordinate
+    #gets the red green and blue values for each image one and two at the given x and y coordinate
     r_img1, g_img1, b_img1 = getPixel(image_1, x, y)
     r_img2, g_img2, b_img2 = getPixel(image_2, x, y)
 
@@ -76,7 +76,7 @@ def combineAll (image_1, image_2):
 #choice: this is the users input, which determines whether the image will be combined vertically or horizontally
 #the function returns a new image that is combined in the middle either vertically or horizontally
 def combineParts(image_1, image_2, choice):
-    #this if statement is to decide if the blend should be vertical or horizontal, in this case its vertical
+    #this if statement is to decide if the blend should be vertical or horizontal, in this case its vertical because the choice is 2
     if choice == 2:
         #creates a new image that will be filled with the new pixels, which depend on the users choice
         partlyBlended = createImage(getWidth(image_1), getHeight(image_1))
@@ -90,6 +90,7 @@ def combineParts(image_1, image_2, choice):
 
                 #this if statement is for putting the first image on the left side of the blended portion
                 if x <= (getWidth(image_1)/3):
+                    #puts the pixels from the first image in the top third of the image
                     putPixel(partlyBlended, x, y, r_img1, g_img1, b_img1)
 
                 #this if statement is for putting the blended pixels in the middle of the new image
@@ -104,7 +105,7 @@ def combineParts(image_1, image_2, choice):
                     #puts the pixels from the second image in the right third of the image
                     putPixel(partlyBlended, x, y, r_img2, g_img2, b_img2)
 
-    #this if statement is to decide if the blend should be vertical or horizontal, in this case its horizontal
+    #this if statement is to decide if the blend should be vertical or horizontal, in this case its horizontal because the choice is 3
     elif choice == 3:
         #creates a new image that will be filled with the new pixels, which depend on the users choice
         partlyBlended = createImage(getWidth(image_1), getHeight(image_1))
@@ -133,11 +134,11 @@ def combineParts(image_1, image_2, choice):
                     #puts the pixels from the second image on the bottom third of the image
                     putPixel(partlyBlended, x, y, r_img2, g_img2, b_img2)
 
-    #returns the image, that being the partial blend of image one and image two
+    #returns the image, that being the partial blend of image one and image two, either being blended vertically or horizontally
     return partlyBlended
 
-#this function is responsible for the high-level processing, like the processing of the choice,
-#all of the other functions are called here as-well,
+#this function is responsible for the high-level processing, like the processing of the choice, and loading and drawing of images,
+#all of the other functions are called here as-well
 #there are no parameters 
 #there are no returns
 def main ():
