@@ -141,25 +141,36 @@ def combineParts(image_1, image_2, choice):
 #there are no parameters 
 #there are no returns
 def main ():
+    #loads both of the images for use in the rest of the program
     image_1 = loadImage("/Users/carson/Desktop/DATA 211/Assignments/Mars.gif")
     image_2 = loadImage("/Users/carson/Desktop/DATA 211/Assignments/Water.gif") 
+    #resizes the window to the size of both of the images (only use image_1 but could use image_2 because they are the same size)
     resize(getWidth(image_1), getHeight(image_1))
 
+    #sets the variable choice equal to the return of the handleInput function
     choice = handleInput()
 
+    #says that if the choice is the number one then the user has chosen to completley combine both images
     if choice == 1:
         
+        #draws the image of the return of the combineAll function at the cordinate (0,0)
         drawImage(combineAll(image_1, image_2), 0, 0)
+        #when the caculations are finished the program will print that the users image is complete
         print("Your image is complete.")
 
+    #says that if the user chose option 2 then they chose to combine the images vertically
     elif choice == 2:
-
+        #draws the image of the return of the combineParts function (which will be a vertically combined image) at the cordinate (0,0)
         drawImage(combineParts(image_1, image_2, choice), 0, 0)
+        #when the caculations are finished the program will print that the users image is complete
         print("Your image is complete.")
 
+    #says that if the user chose option 3 then they chose to combine the images horizontally
     elif choice == 3:
 
+        #draws the image of the return of the combineParts function (which will be a horizontally combined image) at the cordinate (0,0)
         drawImage(combineParts(image_1, image_2, choice), 0, 0)
+        #when the caculations are finished the program will print that the users image is complete
         print("Your image is complete.")
     
 #calls the main function to start the program
