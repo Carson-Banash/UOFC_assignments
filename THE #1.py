@@ -31,7 +31,7 @@ def isAsublistV1(sList, lList):
                 while (n < len(sList)) and (lList[i+n] == sList[n]):
                     n += 1
                     
-                    #if the number of matched elects is equal to the length of the small list -
+                    #if the number of matched elements is equal to the length of the small list -
                     #then the small list is indeed a sublist of the larger
                     if n == len(sList):
                         isSublist = True #sets the value for isSublist to True
@@ -48,34 +48,36 @@ def isAsublistV1(sList, lList):
 #there is only one return, True or False, 
 #that is if the smaller list is a sublist of the larger one.
 def isAsublistV2(sList, lList):
-    #sets the initial n value to zero
-    n = 0
-    #sets the initial boolean value of isSublist to False
+    #sets the original boolean value for isSublist
     isSublist = False
-
-    #this if statement is for determining the index where the larger loop -
-    #and the first number in the smaller loop are the same
+    #initializes an empty list
+    compare = []
+    
+    #says that if the first index value is in the larger list then to execute the code
     if sList[0] in lList:
-        overlap_start = lList.index(sList[0])
-    #if there is no similar number then the smaller list can't be a sublist
-    else:  
-        isSublist = False
+        #gets the index in the larger list for the overlap between the two lists
+        overlap_start = lList.index(sList[0]) 
+        #sets the initial value for n to zero
+        n = 0
 
-    #this for loop is for finding out how many elements are similar -
-    #this is done so that we know how far to slice the larger loop
-    for i in range(0,len(sList)):
-        if sList[i] in lList:
+        #says that while the elements of the small list and the large list, 
+        #at their given indexes are the same and that the counter n is less than  -
+        #the length of the smaller list then the while loop will run
+        while (n < len(sList)) and (lList[overlap_start+n] == sList[n]):
+            #increments the counter n by one
             n += 1
-    
-    #this is for creating the possible sublist that would match in the larger loop -
-    #this is based off of where the fist element in the smaller loop corresponds to the larger one -
-    #and how many elements they have in common
-    possible_subList = lList[overlap_start:(overlap_start+n)]
-    
-    #this says that if the smaller list and the spliced out portion of the larger list are the same -
-    #then the smaller must be a sublist of the larger list
-    if possible_subList == sList:
-        isSublist = True #sets the isSublist value to true if the if statement is true
+            #adds the element in the larger list into a new list to be compared later - 
+            #**this is essentially splicing off the portion of the larger list that -
+            #starts at the first element in the smaller list and goes for the length - 
+            #of the smaller list**
+            compare.append(lList[n])
 
-    #returns the boolean value for isSublist, either True or False
+            #says that once we have gone through all of the elements of the small list -
+            #then we can compare the new list and the original small list
+            if n == len(sList):
+                #says that if the two list are the same then 
+                if compare == sList:
+                    isSublist = True #if they are the same then it sets the value to True
+
+    #returns the value for isSublist, either True or False
     return isSublist
