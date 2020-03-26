@@ -1,22 +1,4 @@
 def isAsublistV1(Slist, Llist):
-    n = 0
-    isSublist = False
-    if Slist[0] in Llist:
-        overlap_start = Llist.index(Slist[0])
-    else:
-        isSublist = False
-    for i in range(0,len(Slist)):
-        if Slist[i] in Llist:
-            n += 1
-            
-    possible_subList = Llist[overlap_start:(overlap_start+n)]
-    #print(possible_subList)
-    if possible_subList == Slist:
-        isSublist = True
-
-    return isSublist
-
-def isAsublistV2(Slist, Llist):
 	isSublist = False
 	
 	if Slist == Llist:
@@ -33,6 +15,24 @@ def isAsublistV2(Slist, Llist):
 					isSublist = True
 
 	return isSublist
+
+def isAsublistV2(Slist, Llist):
+    n = 0
+    isSublist = False
+    if Slist[0] in Llist:
+        overlap_start = Llist.index(Slist[0])
+    else:
+        isSublist = False
+    for i in range(0,len(Slist)):
+        if Slist[i] in Llist:
+            n += 1
+            
+    possible_subList = Llist[overlap_start:(overlap_start+n)]
+    
+    if possible_subList == Slist:
+        isSublist = True
+
+    return isSublist
 
 def main():
     main_list = [1,5,"ACNH","NICE",56.2]
