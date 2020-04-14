@@ -1,26 +1,40 @@
-def handleInput():
-    f_In_Name = str(input("Enter the input file name: "))
+#Carson Banash (30085955)
+#Lab B06
 
+#handleInput holds all of the logic for the users choice, including making sure the right extentions are present
+#there are no parameters
+#there are two returns, one for the input file and another for the output file name 
+def handleInput():
+    #asks the user for an input and sets that equal to f_In_Name
+    f_In_Name = str(input("Enter the input file name: "))
+    #says that if by removing the .in extention it is the same as the original, then it was never there
     if f_In_Name.rstrip(".in") == f_In_Name:
-        f_In_Name += ".in"
-    
+        f_In_Name += ".in"#adds the .in extention
+    #creates the file out name by removing the .in extention and adding in the .out one
     f_Out_Name = f_In_Name.rstrip(".in") + ".out"
-        
+    
+    #returns both the in and out file names
     return f_In_Name, f_Out_Name
 
-
+#this function is resonsible for going through every word and added it to a dictinary
+#there is one parameter, that being the string of text that shoul be put in the dictinary
+#there is only one return, that being the dictinary made with all the word in it
 def str_into_dictinary(string):
-    word_count = {}
-    words = string.split()
+    word_count = {} #creates the dictinary
+    words = string.split() #creates all of the words by splitting the orignal string
     
+    #this loop goes through every word and adds it to the dictinary
     for word in words:
-        word = word.lower()
-        word = word.strip(".!,?;")
-        if word in word_count:
-            word_count[word] += 1
+        word = word.lower()#sets lowercase so they are all equal to eachother
+        word = word.strip(".!,?;")#cleans up the extra punctiation
+        #says that if the word is in the dictinary already then increase its value by one
+        if word in word_count: 
+            word_count[word] += 1 #increases the words value by one
         else:
-            word_count[word] = 1
+            #if the word isnt in the dictinary then it adds it with a value of one
+            word_count[word] = 1 
     
+    #reutrns the dictiary with the counts of each word
     return word_count
 
 def paragraphwords(in_file,out_file):
