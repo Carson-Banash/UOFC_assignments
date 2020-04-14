@@ -110,18 +110,34 @@ def mostAndTotalWords(in_file,out_file):
     #writes the total number of all of the words to the output file
     out_file.write("Total number of words: " + str(totNumOfWords))
 
+#this function is responsible for the high-level processing, like the opening and closing the files
+# and calling the main functions
+#there are no parameters 
+#there are no returns
 def main():
+    #sets the returns of the handleInput function,file names given by the user, to in_file and out_file
     in_file, out_file = handleInput()
+    #opens the input file with the given users file name in read mode
     input_file = open(str(in_file), "r" )
+    #opens the output file with the given users file name in write mode
     output_file = open(str(out_file), "w" )
+    #calls the paragraphwords function giving it the input and output files
     paragraphwords(input_file,output_file)
+    #closes both of the files
     input_file.close()
     output_file.close()
 
+    '''the reason that the files are opened and closed again is because I was giving me errors if
+    I did'nt and the output file must be opened in append mode to avoid erasing'''
+    #opens the input file with the given users file name in read mode
     input_file = open(str(in_file), "r" )
+    #opens the output file with the given users file name in append mode (so it doesnt erase other work)
     output_file = open(str(out_file), "a" )
+    #calls the mostAndTotalWords function giving it the input and output files
     mostAndTotalWords(input_file,output_file)
+    #closes both of the files
     input_file.close()
     output_file.close()
 
+#calls the main function to start the program
 main()
