@@ -77,23 +77,37 @@ def paragraphwords(in_file,out_file):
         #writes the number of words in the ith paragraph to the output file
         out_file.write("\tThe number of words are: " + str(totNumOfWords)+"\n\n")
 
-
-    
+#this function is resonsible for going through the entire file 
+#and determining the total words and the most common one(s)
+#there are two parameters, the input file and the output file
+#there are no returns, instead it writes the acording values to the output file
 def mostAndTotalWords(in_file,out_file):
-
+    #reads the file and removes any extranious characters then setting that to the variable whole_file
     whole_file = in_file.read().strip("\n")
+    #calls the str_into_dictinary function, giving it the whole file to put in a dictinary
+    #then it sets the returned dictianry to the variable word_count
     word_count = str_into_dictinary(whole_file)
-
+    #determines the most occurred word as the one with the heighest value
     most_occurred = max(word_count.values())
+    #initlizes the starting amount of words
     totNumOfWords = 0
+    #loops through the words in dictinary of the whole file
     for word in word_count.keys():
+        #calculates the total amount of words as the sum of the values of each word key
         totNumOfWords += word_count[word]
-        if word_count[word] == most_occurred:
-            if word_count[word]>1:
+
+        #this is the logic for the time vs times senario
+        #if the value of the word is equal to the value of the most occurring word then it is
+        #the most occurring word
+        if word_count[word] == most_occurred: 
+            #if its value is greater than one then it writes that values and times to the output file
+            if word_count[word]>1: 
                 out_file.write( '"'+word+'"' + " occurred " + str(word_count[word]) + " times\n")
+            #otherwise it prints the occurance of the word (1) and time to the output file
             else:
                 out_file.write('"'+word+'"' + " occurred " + str(word_count[word]) + " time\n")
 
+    #writes the total number of all of the words to the output file
     out_file.write("Total number of words: " + str(totNumOfWords))
 
 def main():
