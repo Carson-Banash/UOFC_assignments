@@ -37,28 +37,44 @@ def str_into_dictinary(string):
     #reutrns the dictiary with the counts of each word
     return word_count
 
+#this function is resonsible for going through the file and breaking off each paragraph,
+#then it determines the words in that paragraph and the sentences.
+#there are two parameters, the input file and the output file
+#there are no returns, instead it writes the acording values to the output file
 def paragraphwords(in_file,out_file):
-
+    #reads the input file and strips it of extranious characters and then splits it into the paragraphs
+    #it assignes a list, with the length of the number of paragraphs, to the variable whole_file_split
     whole_file_split = in_file.read().strip("\n").split("\n")
-
+    #there are some empty elemts that show up so this is responsible for removing them
     while "" in whole_file_split:
         whole_file_split.remove("")
-
+    #writes the total number of paragraphs to the output file. this is the length because each element of the 
+    #whole_file_split is a paragraph
     out_file.write("The number of paragraphs is: " + str(len(whole_file_split))+"\n")
 
+    #loops through each element(paragraph) of the whole_file_split list
     for i in range(0,len(whole_file_split)):
-        paragraph = whole_file_split[i]
+        paragraph = whole_file_split[i] #says that the paragraph is the ith element of the list
         
+        #counts the number of sentences as the sum of the counts of ., !, and ?
         num_sent = paragraph.count(".") + paragraph.count("!") + paragraph.count("?")
+        #writes the paragraph number to the output file, so the user knows what paragraph contains the 
+        #amount of letters and sentences
         out_file.write("\nFor paragraph %s: \n" %(i+1))
-        out_file.write("\tnumber of sentences: " + str(num_sent)+"\n")
+        #writes the number of sentences in the ith paragraph to the output file
+        out_file.write("\tnumber of sentences: " + str(num_sent)+"\n") 
 
+        #calls the str_into_dictinary function, giving it the ith element(paragraph) to put in a dictinary
+        #then it sets the returned dictianry to the variable word_count
         word_count = str_into_dictinary(whole_file_split[i])
         
+        #initlizes the starting amount of words
         totNumOfWords = 0
+        #loops through the words in dictinary of the ith paragraph
         for word in word_count.keys():
+            #adds the coresponding count of the specific word to the total
             totNumOfWords += word_count[word]
-        
+        #writes the number of words in the ith paragraph to the output file
         out_file.write("\tThe number of words are: " + str(totNumOfWords)+"\n\n")
 
 
