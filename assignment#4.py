@@ -84,18 +84,26 @@ def paragraphwords(in_file,out_file):
 def mostAndTotalWords(in_file,out_file):
     #reads the file and removes any extranious characters then setting that to the variable whole_file
     whole_file = in_file.read().strip("\n")
+
     #calls the str_into_dictinary function, giving it the whole file to put in a dictinary
     #then it sets the returned dictianry to the variable word_count
     word_count = str_into_dictinary(whole_file)
+
     #determines the most occurred word as the one with the heighest value
     most_occurred = max(word_count.values())
+
     #initlizes the starting amount of words
     totNumOfWords = 0
-    #loops through the words in dictinary of the whole file
+    #loops through the words in the dictinary of the whole file
     for word in word_count.keys():
         #calculates the total amount of words as the sum of the values of each word key
         totNumOfWords += word_count[word]
 
+    #writes the total number of all of the words to the output file
+    out_file.write("Total number of words: " + str(totNumOfWords)+"\n")
+
+    #loops through the words in dictinary of the whole file
+    for word in word_count.keys():
         #this is the logic for the time vs times senario
         #if the value of the word is equal to the value of the most occurring word then it is
         #the most occurring word
@@ -107,8 +115,7 @@ def mostAndTotalWords(in_file,out_file):
             else:
                 out_file.write('"'+word+'"' + " occurred " + str(word_count[word]) + " time\n")
 
-    #writes the total number of all of the words to the output file
-    out_file.write("Total number of words: " + str(totNumOfWords))
+    
 
 #this function is responsible for the high-level processing, like the opening and closing the files
 # and calling the main functions
