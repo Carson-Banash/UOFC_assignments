@@ -35,10 +35,7 @@ def whatType(string1, string2):
         #checkes if the character is in the list of characters that are not incuded 
         #in determineing the category
         if char in bad_characters:
-            #print(char, end="")
-            #if the character is in the list it does nothing with it.
-            #this is done so that they arent added to the dictinary
-            pass 
+            print(char, end="") 
         #checks if the character is already in the phrase one dictinary
         elif char in dphrase_one:
             #if it is in the dictinary, then its value is uncremented by one
@@ -51,8 +48,8 @@ def whatType(string1, string2):
 
     for char in phrase_two:
         if char in bad_characters:
-            #print(char, end="")
-            pass
+            print(char, end="")
+            
         elif char not in dphrase_one:
             is_type_A = False
         elif char in dphrase_two:
