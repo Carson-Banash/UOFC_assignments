@@ -113,15 +113,27 @@ def whatCategory(string1, string2):
 
     #returns the category statment, either A or B
     return category_statment
-        
+    
+#this function is responsible for the high-level processing, like the opening and closing the files
+# and calling the functions, it also writes to the output file
+#there are no parameters 
+#there are no returns
 def main():
+    #opens both the input and output files the former in read mode and the ladder in write mode
     input_file = open("THE2.in", "r")
     output_file = open("THE2.out", "w")
 
-    file_list_lower, file_list_regular = split_file(input_file)
+    #sets the variables file_list_lower and file_list_regular to the returning lists of the split_file function
+    file_list_lower, file_list_regular = split_file(input_file)# the input file is given to the split_file funciton
+
+    #loops through the amount of elements in the file_list_lower list counting by 2
     for i in range (0,len(file_list_lower),2):
+        #writes to the file in the specified format. This is done by calling what category function and passing it the 
+        #two phrases that are to be compaired or i and i+1 or the next element. and using the unchanged phrases
+        #in the file_list_regular list. 
         output_file.write('"' + file_list_regular[i] + '"' + " and " + '"' + file_list_regular[i+1] + '": ' + whatCategory(file_list_lower[i], file_list_lower[i+1]) +"\n")
 
+#calls the main function to start the program
 main()
 
 
