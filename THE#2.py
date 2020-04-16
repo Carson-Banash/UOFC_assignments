@@ -38,7 +38,7 @@ def split_file(in_file):
         #sets the line to the next line in the file, this is needed so the file is looped through
         line = in_file.readline()
 
-#the function returs the list of the file in lowercase and the original, each element being a line from the file
+    #the function returs the list of the file in lowercase and the original, each element being a line from the file
     return file_list_lower, file_list_regular
 
 #this function is responsible for adding each character of two given strings to its own dictinary.
